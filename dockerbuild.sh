@@ -9,7 +9,7 @@ echo Cleaning...
 rm -rf ./dist
 
 echo Building app
-npm install
+npm install --production
 bower install
 grunt
 
