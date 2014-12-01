@@ -5,6 +5,7 @@
 ###export DOCKER_HOST=tcp://192.168.59.103:2376
 ###export DOCKER_CERT_PATH=/Users/DrepAri/.boot2docker/certs/boot2docker-vm
 
+set -e
 echo "Cleaning..."
 rm -rf ./dist
 
@@ -13,12 +14,6 @@ npm install
 bower install
 
 grunt
-
-rc=$
-if [ ${rc} != 0 ]; then
-  echo "Error while building app"
-  exit ${rc}
-fi
 
 cp ./Dockerfile ./dist/
 
