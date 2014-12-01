@@ -5,21 +5,26 @@
 ###export DOCKER_HOST=tcp://192.168.59.103:2376
 ###export DOCKER_CERT_PATH=/Users/DrepAri/.boot2docker/certs/boot2docker-vm
 
-echo Cleaning...
+echo "Cleaning..."
 rm -rf ./dist
 
-echo Building app
-rm -rf node_modules && npm cache clean && npm i
+echo "Building app"
+npm install
 bower install
 
 grunt
+
+if [ ! -d "$dist" ]; then
+  echo "Error while building app"
+  exit 1
+fi
 
 cp ./Dockerfile ./dist/
 
 cd dist
 npm install --production
 
-echo Building docker image
+echo "Building docker image"
 docker build -t arifreyr/tictactoe .
 
 echo "Done"
