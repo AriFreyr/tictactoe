@@ -1,9 +1,13 @@
 #!/bin/bash
 
-ssh root@178.62.218.30
-
+set -e
+echo "Sending commands....."
+ssh root@178.62.218.30 bash -c "'
 docker stop arifreyr/tictactoe
-docker pull arifreyr/tictactoe
-docker start arifreyr/tictactoe
 
-exit
+docker pull arifreyr/tictactoe
+
+docker start arifreyr/tictactoe
+'"
+
+echo "Done..."
