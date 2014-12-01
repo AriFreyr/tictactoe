@@ -14,9 +14,10 @@ bower install
 
 grunt
 
-if [ ! -d "$dist" ]; then
+rc=$
+if [ ${rc} != 0 ]; then
   echo "Error while building app"
-  exit 1
+  exit ${rc}
 fi
 
 cp ./Dockerfile ./dist/
