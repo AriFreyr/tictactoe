@@ -46,6 +46,16 @@ module.exports = function(history) {
 							timestamp: cmdObj.timestamp
 						}];
 					}
+				},
+				PlaceMove: function(cmdObj) {
+
+					return [{
+						id: cmdObj.id,
+						event: 'MovePlaced',
+						move: cmdObj.move,
+						user: cmdObj.user,
+						timestamp: cmdObj.timestamp
+					}]
 				}
 			};
 
