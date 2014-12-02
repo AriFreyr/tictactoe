@@ -13,6 +13,25 @@ module.exports = function(history) {
 		return isFull;
 	};
 
+	var isIllegalMove = function isIllegalMove(command) {
+
+		var isTaken = false;
+
+		if (command.move.square < 0 || command.move.square > 8) {
+			return true;
+		}
+
+		_.forEach(history, function(event){
+			if(event.event == 'MovePlaced') {
+				if(event.move.square === command.move.square) {
+					isTaken = true;
+				}
+			}
+		});
+
+		return isTaken;
+	};
+
 	return {
 		executeCommand: function executeCommand(commandObject) {
 			var command = commandObject.command;
@@ -48,6 +67,16 @@ module.exports = function(history) {
 					}
 				},
 				PlaceMove: function(cmdObj) {
+
+					if (isIllegalMove(cmdObj)) {
+						return [{
+							id: cmdObj.id,
+							event: 'IllegalMove',
+							move: cmdObj.move,
+							user: cmdObj.user,
+							timestamp: cmdObj.timestamp
+						}]
+					}
 
 					return [{
 						id: cmdObj.id,
