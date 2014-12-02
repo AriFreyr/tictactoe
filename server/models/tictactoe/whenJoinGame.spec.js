@@ -87,5 +87,4 @@ describe('join game command', function() {
 
 		should(JSON.stringify(result)).be.exactly(JSON.stringify(then));
 	});
-
 });

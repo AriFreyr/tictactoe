@@ -22,7 +22,7 @@ module.exports = function(history) {
 		}
 
 		_.forEach(history, function(event){
-			if(event.event === 'MovePlaced') {
+			if (event.event === 'MovePlaced') {
 				if(event.move.square === command.move.square) {
 					isTaken = true;
 				}
@@ -30,6 +30,30 @@ module.exports = function(history) {
 		});
 
 		return isTaken;
+	};
+
+	var isGameOver = function isGameOver(command) {
+		var row = parseInt((command.move.square / 3) % 3);
+		var col = command.move.square % 3;
+		var doneMoves = [];
+
+		doneMoves.push(command.move.square);
+
+		_.forEach(history, function(event) {
+			if (event.event === 'MovePlaced' && event.move.type === 'X') {
+				doneMoves.push(event.move.square);
+			}
+		});
+
+		//vertical win
+		if (doneMoves.indexOf(row * 3) !== -1 && doneMoves.indexOf((row * 3) + 1) !== -1 && doneMoves.indexOf((row * 3) + 2) !== -1) {
+			return true;
+		}
+
+		//horizontal win
+		if (doneMoves.indexOf(col) !== -1 && doneMoves.indexOf(col + 3) !== -1 && doneMoves.indexOf(col + 6) !== -1) {
+			return true;
+		}
 	};
 
 	return {
@@ -48,7 +72,7 @@ module.exports = function(history) {
 				},
 				JoinGame: function(cmdObj) {
 
-					if(!isGameFull()) {
+					if (!isGameFull()) {
 						return [{
 							id: cmdObj.id,
 							event: 'GameJoined',
@@ -75,7 +99,16 @@ module.exports = function(history) {
 							move: cmdObj.move,
 							user: cmdObj.user,
 							timestamp: cmdObj.timestamp
-						}]
+						}];
+					}
+					else if (isGameOver(cmdObj)) {
+						return [{
+							id: cmdObj.id,
+							event: 'GameOver',
+							move: cmdObj.move,
+							user: cmdObj.user,
+							timestamp: cmdObj.timestamp
+						}];
 					}
 
 					return [{
@@ -84,7 +117,7 @@ module.exports = function(history) {
 						move: cmdObj.move,
 						user: cmdObj.user,
 						timestamp: cmdObj.timestamp
-					}]
+					}];
 				}
 			};
 
