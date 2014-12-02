@@ -18,17 +18,15 @@ describe('created game command', function() {
 			timestamp: '2014-12-02T14:04:04'
 		};
 
-		var then = [
-			{
+		var then = [{
+			id: '1',
+			event: 'GameCreated',
+			user: {
 				id: '1',
-				event: 'GameCreated',
-				user: {
-					id: '1',
-					username: 'Ari'
-				},
-				timestamp: '2014-12-02T14:04:04'
-			}
-		];
+				username: 'Ari'
+			},
+			timestamp: '2014-12-02T14:04:04'
+		}];
 
 		var result = game(given).executeCommand(when);
 
