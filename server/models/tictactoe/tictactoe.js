@@ -22,7 +22,7 @@ module.exports = function(history) {
 		}
 
 		_.forEach(history, function(event){
-			if(event.event == 'MovePlaced') {
+			if(event.event === 'MovePlaced') {
 				if(event.move.square === command.move.square) {
 					isTaken = true;
 				}
