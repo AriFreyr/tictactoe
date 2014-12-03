@@ -56,6 +56,14 @@ module.exports = function(history) {
 			if (doneMoves.indexOf(col) !== -1 && doneMoves.indexOf(col + 3) !== -1 && doneMoves.indexOf(col + 6) !== -1) {
 				return true;
 			}
+
+			//diagonal win
+			if (doneMoves.indexOf(0) !== -1 && doneMoves.indexOf(4) !== -1 && doneMoves.indexOf(8) !== -1) {
+				return true;
+			}
+			else if (doneMoves.indexOf(2) !== -1 && doneMoves.indexOf(4) !== -1 && doneMoves.indexOf(6) !== -1) {
+				return true;
+			}
 		}
 	};
 };

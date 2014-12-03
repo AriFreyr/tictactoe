@@ -9,7 +9,7 @@ module.exports = function(history) {
 			var command = commandObject.command;
 
 			var events = {
-				CreateGame: function(cmdObj) {
+				CreateGame: function CreateGame(cmdObj) {
 
 					return [{
 						id: cmdObj.id,
@@ -18,7 +18,7 @@ module.exports = function(history) {
 						timestamp: cmdObj.timestamp
 					}];
 				},
-				JoinGame: function(cmdObj) {
+				JoinGame: function JoinGame(cmdObj) {
 
 					if (!gamestate.isGameFull()) {
 						return [{
@@ -38,7 +38,7 @@ module.exports = function(history) {
 						}];
 					}
 				},
-				PlaceMove: function(cmdObj) {
+				PlaceMove: function PlaceMove(cmdObj) {
 
 					if (gamestate.isIllegalMove(cmdObj)) {
 						return [{
