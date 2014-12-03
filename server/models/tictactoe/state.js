@@ -2,6 +2,29 @@ var _ = require('lodash');
 
 module.exports = function(history) {
 
+	var player1;
+	var player2;
+	var gameOver = false;
+
+	_.forEach(history, function(event) {
+
+		if (event.event === 'GameCreated') {
+			player1 = event.user;
+		}
+		else if (event.event === 'GameJoined') {
+			player2 = event.user;
+		}
+		else if (event.event === 'LeftGame') {
+			if (JSON.stringify(player1) === JSON.stringify(event.user)) {
+				player1 = undefined;
+			}
+			else {
+				player2 = undefined;
+			}
+		}
+	});
+
+
 	return {
 
 		isGameFull: function isGameFull() {
@@ -64,6 +87,17 @@ module.exports = function(history) {
 			else if (doneMoves.indexOf(2) !== -1 && doneMoves.indexOf(4) !== -1 && doneMoves.indexOf(6) !== -1) {
 				return true;
 			}
+		},
+
+		leaveGame: function leaveGame(cmdObj) {
+			if (player2 !== undefined && JSON.stringify(cmdObj.user) === JSON.stringify(player1)) {
+				return player2;
+			}
+			else if (player1 !== undefined && JSON.stringify(cmdObj.user) === JSON.stringify(player2)) {
+				return player1;
+			}
+
+			return undefined;
 		}
 	};
 };

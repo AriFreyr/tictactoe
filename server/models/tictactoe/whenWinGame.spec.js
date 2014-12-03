@@ -76,7 +76,7 @@ describe('place winning move command', function() {
 					square: 2,
 					type: 'X'
 				},
-				user: {
+				winner: {
 					id: '1',
 					username: 'Ari'
 				},
@@ -160,7 +160,7 @@ describe('place winning move command', function() {
 					square: 4,
 					type: 'X'
 				},
-				user: {
+				winner: {
 					id: '1',
 					username: 'Ari'
 				},
@@ -244,7 +244,7 @@ describe('place winning move command', function() {
 					square: 6,
 					type: 'X'
 				},
-				user: {
+				winner: {
 					id: '1',
 					username: 'Ari'
 				},
@@ -328,7 +328,7 @@ describe('place winning move command', function() {
 					square: 7,
 					type: 'X'
 				},
-				user: {
+				winner: {
 					id: '1',
 					username: 'Ari'
 				},
@@ -412,7 +412,7 @@ describe('place winning move command', function() {
 					square: 8,
 					type: 'X'
 				},
-				user: {
+				winner: {
 					id: '1',
 					username: 'Ari'
 				},
@@ -496,7 +496,7 @@ describe('place winning move command', function() {
 					square: 6,
 					type: 'X'
 				},
-				user: {
+				winner: {
 					id: '1',
 					username: 'Ari'
 				},

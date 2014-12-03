@@ -54,7 +54,7 @@ module.exports = function(history) {
 							id: cmdObj.id,
 							event: 'GameOver',
 							move: cmdObj.move,
-							user: cmdObj.user,
+							winner: cmdObj.user,
 							timestamp: cmdObj.timestamp
 						}];
 					}
@@ -66,6 +66,36 @@ module.exports = function(history) {
 						user: cmdObj.user,
 						timestamp: cmdObj.timestamp
 					}];
+				},
+				LeaveGame: function LeaveGame(cmdObj) {
+					var winner = gamestate.leaveGame(cmdObj);
+
+					if (winner !== undefined) {
+						return [
+							{
+								id: cmdObj.id,
+								event: 'LeftGame',
+								user: cmdObj.user,
+								timestamp: cmdObj.timestamp
+							},
+							{
+								id: cmdObj.id,
+								event: 'GameOver',
+								winner: winner,
+								timestamp: cmdObj.timestamp
+							}
+						];
+					}
+					else {
+						return [
+							{
+								id: cmdObj.id,
+								event: 'LeftGame',
+								user: cmdObj.user,
+								timestamp: cmdObj.timestamp
+							}
+						]
+					}
 				}
 			};
 
