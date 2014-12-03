@@ -58,6 +58,15 @@ module.exports = function(history) {
 							timestamp: cmdObj.timestamp
 						}];
 					}
+					else if (gamestate.isTie()) {
+						return [{
+							id: cmdObj.id,
+							event: 'GameOver',
+							move: cmdObj.move,
+							winner: 'tie',
+							timestamp: cmdObj.timestamp
+						}];
+					}
 
 					return [{
 						id: cmdObj.id,

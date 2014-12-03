@@ -5,6 +5,7 @@ module.exports = function(history) {
 	var player1;
 	var player2;
 	var gameOver = false;
+	var moveCounter = 0;
 
 	_.forEach(history, function(event) {
 
@@ -22,6 +23,13 @@ module.exports = function(history) {
 				player2 = undefined;
 			}
 		}
+		else if (event.event === 'MovePlaced') {
+			moveCounter++;
+		}
+		else if (event.event === 'GameOver') {
+			gameOver = true;
+		}
+
 	});
 
 
@@ -98,6 +106,14 @@ module.exports = function(history) {
 			}
 
 			return undefined;
+		},
+
+		isTie: function isTie() {
+			if (moveCounter >= 8) {
+				return true;
+			}
+			return false;
+
 		}
 	};
 };
