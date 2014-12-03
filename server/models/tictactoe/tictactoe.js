@@ -2,59 +2,7 @@ var _ = require('lodash');
 
 module.exports = function(history) {
 
-	var isGameFull = function isGameFull() {
-		var isFull = false;
-		_.forEach(history, function(event){
-			if (event.event === 'GameJoined') {
-				isFull = true;
-			}
-		});
-
-		return isFull;
-	};
-
-	var isIllegalMove = function isIllegalMove(command) {
-
-		var isTaken = false;
-
-		if (command.move.square < 0 || command.move.square > 8) {
-			return true;
-		}
-
-		_.forEach(history, function(event){
-			if (event.event === 'MovePlaced') {
-				if(event.move.square === command.move.square) {
-					isTaken = true;
-				}
-			}
-		});
-
-		return isTaken;
-	};
-
-	var isGameOver = function isGameOver(command) {
-		var row = parseInt((command.move.square / 3) % 3);
-		var col = command.move.square % 3;
-		var doneMoves = [];
-
-		doneMoves.push(command.move.square);
-
-		_.forEach(history, function(event) {
-			if (event.event === 'MovePlaced' && event.move.type === 'X') {
-				doneMoves.push(event.move.square);
-			}
-		});
-
-		//vertical win
-		if (doneMoves.indexOf(row * 3) !== -1 && doneMoves.indexOf((row * 3) + 1) !== -1 && doneMoves.indexOf((row * 3) + 2) !== -1) {
-			return true;
-		}
-
-		//horizontal win
-		if (doneMoves.indexOf(col) !== -1 && doneMoves.indexOf(col + 3) !== -1 && doneMoves.indexOf(col + 6) !== -1) {
-			return true;
-		}
-	};
+	var gamestate = require('./state')(history);
 
 	return {
 		executeCommand: function executeCommand(commandObject) {
@@ -72,7 +20,7 @@ module.exports = function(history) {
 				},
 				JoinGame: function(cmdObj) {
 
-					if (!isGameFull()) {
+					if (!gamestate.isGameFull()) {
 						return [{
 							id: cmdObj.id,
 							event: 'GameJoined',
@@ -92,7 +40,7 @@ module.exports = function(history) {
 				},
 				PlaceMove: function(cmdObj) {
 
-					if (isIllegalMove(cmdObj)) {
+					if (gamestate.isIllegalMove(cmdObj)) {
 						return [{
 							id: cmdObj.id,
 							event: 'IllegalMove',
@@ -101,7 +49,7 @@ module.exports = function(history) {
 							timestamp: cmdObj.timestamp
 						}];
 					}
-					else if (isGameOver(cmdObj)) {
+					else if (gamestate.isGameOver(cmdObj)) {
 						return [{
 							id: cmdObj.id,
 							event: 'GameOver',
