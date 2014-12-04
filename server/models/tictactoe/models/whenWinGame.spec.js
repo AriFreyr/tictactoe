@@ -86,7 +86,7 @@ describe('place winning move command', function() {
 
 		var result = game(given).executeCommand(when);
 
-		should(JSON.stringify(result)).be.exactly(JSON.stringify(then));
+		should(result).eql(then);
 	});
 
 	it('should send game over event if move finishes game vertically', function () {
@@ -170,7 +170,7 @@ describe('place winning move command', function() {
 
 		var result = game(given).executeCommand(when);
 
-		should(JSON.stringify(result)).be.exactly(JSON.stringify(then));
+		should(result).eql(then);
 	});
 
 	it('should send game over event if move finishes game horizontally', function () {
@@ -254,7 +254,7 @@ describe('place winning move command', function() {
 
 		var result = game(given).executeCommand(when);
 
-		should(JSON.stringify(result)).be.exactly(JSON.stringify(then));
+		should(result).eql(then);
 	});
 
 	it('should send game over event if move finishes game horizontally', function () {
@@ -338,7 +338,7 @@ describe('place winning move command', function() {
 
 		var result = game(given).executeCommand(when);
 
-		should(JSON.stringify(result)).be.exactly(JSON.stringify(then));
+		should(result).eql(then);
 	});
 
 	it('should send game over event if move finishes game diagonally', function () {
@@ -422,7 +422,7 @@ describe('place winning move command', function() {
 
 		var result = game(given).executeCommand(when);
 
-		should(JSON.stringify(result)).be.exactly(JSON.stringify(then));
+		should(result).eql(then);
 	});
 
 	it('should send game over event if move finishes game diagonally', function () {
@@ -506,6 +506,6 @@ describe('place winning move command', function() {
 
 		var result = game(given).executeCommand(when);
 
-		should(JSON.stringify(result)).be.exactly(JSON.stringify(then));
+		should(result).eql(then);
 	});
 });

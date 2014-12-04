@@ -158,6 +158,6 @@ describe('when game is tied', function() {
 
 		var result = game(given).executeCommand(when);
 
-		should(JSON.stringify(result)).be.exactly(JSON.stringify(then));
+		should(result).eql(then);
 	});
 });

@@ -61,7 +61,7 @@ describe('when player leaves game', function() {
 
 		var result = game(given).executeCommand(when);
 
-		should(JSON.stringify(result)).be.exactly(JSON.stringify(then));
+		should(result).eql(then);
 	});
 
 	it('should not award any win if player is only one left', function() {
@@ -120,6 +120,6 @@ describe('when player leaves game', function() {
 
 		var result = game(given).executeCommand(when);
 
-		should(JSON.stringify(result)).be.exactly(JSON.stringify(then));
+		should(result).eql(then);
 	});
 });

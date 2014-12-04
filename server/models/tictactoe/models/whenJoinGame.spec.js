@@ -38,7 +38,7 @@ describe('join game command', function() {
 
 		var result = game(given).executeCommand(when);
 
-		should(JSON.stringify(result)).be.exactly(JSON.stringify(then));
+		should(result).eql(then);
 	});
 
 	it('should send gamefull event if game is full', function() {
@@ -85,6 +85,6 @@ describe('join game command', function() {
 
 		var result = game(given).executeCommand(when);
 
-		should(JSON.stringify(result)).be.exactly(JSON.stringify(then));
+		should(result).eql(then);
 	});
 });
