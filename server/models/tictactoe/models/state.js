@@ -109,11 +109,7 @@ module.exports = function(history) {
 		},
 
 		isTie: function isTie() {
-			if (moveCounter >= 8) {
-				return true;
-			}
-			return false;
-
+			return moveCounter >= 8;
 		}
 	};
 };

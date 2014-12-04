@@ -71,7 +71,7 @@ describe('place winning move command', function() {
 		var then = [
 			{
 				id: '1',
-				event: 'GameOver',
+				event: 'GameWon',
 				move: {
 					square: 2,
 					type: 'X'
@@ -155,7 +155,7 @@ describe('place winning move command', function() {
 		var then = [
 			{
 				id: '1',
-				event: 'GameOver',
+				event: 'GameWon',
 				move: {
 					square: 4,
 					type: 'X'
@@ -239,7 +239,7 @@ describe('place winning move command', function() {
 		var then = [
 			{
 				id: '1',
-				event: 'GameOver',
+				event: 'GameWon',
 				move: {
 					square: 6,
 					type: 'X'
@@ -323,7 +323,7 @@ describe('place winning move command', function() {
 		var then = [
 			{
 				id: '1',
-				event: 'GameOver',
+				event: 'GameWon',
 				move: {
 					square: 7,
 					type: 'X'
@@ -407,7 +407,7 @@ describe('place winning move command', function() {
 		var then = [
 			{
 				id: '1',
-				event: 'GameOver',
+				event: 'GameWon',
 				move: {
 					square: 8,
 					type: 'X'
@@ -491,7 +491,7 @@ describe('place winning move command', function() {
 		var then = [
 			{
 				id: '1',
-				event: 'GameOver',
+				event: 'GameWon',
 				move: {
 					square: 6,
 					type: 'X'

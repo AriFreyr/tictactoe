@@ -52,7 +52,7 @@ module.exports = function(history) {
 					else if (gamestate.isGameOver(cmdObj)) {
 						return [{
 							id: cmdObj.id,
-							event: 'GameOver',
+							event: 'GameWon',
 							move: cmdObj.move,
 							winner: cmdObj.user,
 							timestamp: cmdObj.timestamp
@@ -61,9 +61,8 @@ module.exports = function(history) {
 					else if (gamestate.isTie()) {
 						return [{
 							id: cmdObj.id,
-							event: 'GameOver',
+							event: 'GameTie',
 							move: cmdObj.move,
-							winner: 'tie',
 							timestamp: cmdObj.timestamp
 						}];
 					}

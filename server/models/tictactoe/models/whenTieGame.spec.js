@@ -148,12 +148,11 @@ describe('when game is tied', function() {
 
 		var then = [{
 			id: '1',
-			event: 'GameOver',
+			event: 'GameTie',
 			move: {
 				square: 8,
 				type: 'X'
 			},
-			winner: 'tie',
 			timestamp: '2014-12-02T14:04:04'
 		}];
 
