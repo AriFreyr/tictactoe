@@ -6,7 +6,7 @@ describe('context should give the correct game to work with', function() {
 
 	it('should give the game an event store to process and return output', function() {
 
-		var calledWithId = undefined;
+		var calledWithId;
 
 		var gameHandler = function(history) {
 			return {
@@ -17,7 +17,7 @@ describe('context should give the correct game to work with', function() {
 			};
 		};
 
-		var eventId = undefined;
+		var eventId;
 
 		var store = {
 			loadEvents: function loadEvents(eid) {
