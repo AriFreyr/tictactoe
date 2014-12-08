@@ -5,6 +5,7 @@ angular.module('tictactoeApp').controller('TicTacToeController',
 
 		$scope.username = '';
 		$scope.gameStarted = false;
+		$scope.gameOver = false;
 		$scope.events = [];
 		$scope.player = 'X';
 		$scope.board = [['','',''],['','',''],['','','']];
@@ -27,7 +28,7 @@ angular.module('tictactoeApp').controller('TicTacToeController',
 			$scope.gameStarted = true;
 		};
 
-		$scope.placeMove = function placeMove(row, col) {
+		$scope.placeMove = function placeMove(row, col, $event) {
 			var square;
 
 			if(row === 0) {
@@ -58,7 +59,19 @@ angular.module('tictactoeApp').controller('TicTacToeController',
 				var event = data.data[0];
 
 				console.log(event);
+
+				if (event.event !== 'IllegalMove') {
+					if ($scope.player === 'X') {
+						$($event.target).css('background-image', 'url("' + '../assets/images/X.png' +'")');
+						$scope.player = 'O';
+					}
+					else {
+						$($event.target).css('background-image', 'url(' + '../assets/images/O.png' +')');
+						$scope.player = 'X';
+					}
+				}
 			});
+			console.log($event);
 		};
 
 

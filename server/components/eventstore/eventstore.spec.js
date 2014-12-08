@@ -8,7 +8,7 @@ describe('eventstore should manage events correctly', function() {
 	it('should save events into storage if empty', function(){
 		var memstore = store();
 
-		memstore.saveEvent({id: 1});
+		memstore.saveEvent([{id: 1}]);
 
 		should(memstore.loadEvents(1).length).be.exactly(1);
 	});
@@ -16,8 +16,8 @@ describe('eventstore should manage events correctly', function() {
 	it('should save events to same spot if storage is not empty', function(){
 		var memstore = store();
 
-		memstore.saveEvent({id: 1});
-		memstore.saveEvent({id: 1});
+		memstore.saveEvent([{id: 1}]);
+		memstore.saveEvent([{id: 1}]);
 
 		should(memstore.loadEvents(1).length).be.exactly(2);
 	});

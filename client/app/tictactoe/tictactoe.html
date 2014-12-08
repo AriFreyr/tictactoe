@@ -12,8 +12,7 @@
 	<div class="game-board" ng-show="gameStarted">
 		<table class="game-grid">
 			<tr ng-repeat="row in board">
-				<td class="square" ng-repeat="col in row track by $index" ng-click="placeMove($parent.$index, $index)">
-					<p>X</p>
+				<td class="square" ng-repeat="col in row track by $index" ng-click="placeMove($parent.$index, $index, $event)">
 				</td>
 			</tr>
 		</table>
