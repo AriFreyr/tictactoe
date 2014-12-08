@@ -19,14 +19,42 @@ describe('Controller: TicTacToeController', function () {
 
 	it('should create new game with post method when asked', function(){
 		var username = 'TEST';
-		$httpBackend.expectPOST('/api/sendcommand').respond({
-			response: [{}]
-		});
+		$httpBackend.expectPOST('/api/sendcommand').respond([{
+
+		}]);
 
 		scope.createGame(username);
 		$httpBackend.flush();
 
 		expect(scope.events.length).toBe(1);
+		expect(scope.gameStarted).toBeTruthy();
+
+	});
+
+	it('should place move when asked', function(){
+		$httpBackend.expectPOST('/api/sendcommand').respond([{
+		}]);
+
+
+		scope.events = [{id: 1, user: {id: 1}}];
+		scope.placeMove(1, 2, {});
+		$httpBackend.flush();
+
+		expect(scope.gameOver).toBeFalsy();
+
+	});
+
+	it('should end game correctly', function(){
+		$httpBackend.expectPOST('/api/sendcommand').respond([{
+			event: 'GameWon'
+		}]);
+
+
+		scope.events = [{id: 1, user: {id: 1}}];
+		scope.placeMove(1, 2, {});
+		$httpBackend.flush();
+
+		expect(scope.gameOver).toBeTruthy();
 
 	});
 

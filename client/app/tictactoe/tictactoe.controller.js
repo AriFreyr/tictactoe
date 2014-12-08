@@ -31,6 +31,10 @@ angular.module('tictactoeApp').controller('TicTacToeController',
 		$scope.placeMove = function placeMove(row, col, $event) {
 			var square;
 
+			if ($scope.gameOver) {
+				return;
+			}
+
 			if(row === 0) {
 				square = col;
 			}
@@ -58,8 +62,6 @@ angular.module('tictactoeApp').controller('TicTacToeController',
 			promise.then(function(data) {
 				var event = data.data[0];
 
-				console.log(event);
-
 				if (event.event !== 'IllegalMove') {
 					if ($scope.player === 'X') {
 						$($event.target).css('background-image', 'url("' + '../assets/images/X.png' +'")');
@@ -69,9 +71,13 @@ angular.module('tictactoeApp').controller('TicTacToeController',
 						$($event.target).css('background-image', 'url(' + '../assets/images/O.png' +')');
 						$scope.player = 'X';
 					}
+
+					if (event.event === 'GameWon' || event.event === 'GameTie') {
+						$scope.gameOver = true;
+						$($event.target).parent().parent().text('GameOver');
+					}
 				}
 			});
-			console.log($event);
 		};
 
 
