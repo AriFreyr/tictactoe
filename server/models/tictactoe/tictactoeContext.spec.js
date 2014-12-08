@@ -23,7 +23,9 @@ describe('context should give the correct game to work with', function() {
 			loadEvents: function loadEvents(eid) {
 				eventId = eid;
 				return [];
-			}
+			},
+			saveEvent: function saveEvent(event) {}
+
 		};
 
 		var context = require('./tictactoeContext')(store, gameHandler);

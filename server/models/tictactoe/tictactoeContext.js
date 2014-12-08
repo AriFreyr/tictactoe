@@ -6,7 +6,9 @@ module.exports = function(eventStore, gameHandler) {
 		handleCommand: function handleCommand(command) {
 
 			var history = eventStore.loadEvents(command.id);
-			return gameHandler(history).executeCommand(command);
+			var event = gameHandler(history).executeCommand(command);
+			eventStore.saveEvent(event);
+			return event;
 		}
 	};
 
