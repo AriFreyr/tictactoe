@@ -9,7 +9,9 @@ angular.module('tictactoeApp', [
 ])
 	.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 		$urlRouterProvider
-			.otherwise('/');
+			.when('/', '/game/list')
+			.when('', 'game/list')
+			.otherwise('/game/list');
 
 		$locationProvider.html5Mode(true);
 	});

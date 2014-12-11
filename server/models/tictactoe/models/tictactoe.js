@@ -20,7 +20,16 @@ module.exports = function(history) {
 				},
 				JoinGame: function JoinGame(cmdObj) {
 
-					if (!gamestate.isGameFull()) {
+					if (history.length === 0) {
+						return [{
+							id: cmdObj.id,
+							event: 'NoSuchGame',
+							user: cmdObj.user,
+							timestamp: cmdObj.timestamp
+
+						}];
+					}
+					else if (!gamestate.isGameFull()) {
 						return [{
 							id: cmdObj.id,
 							event: 'GameJoined',

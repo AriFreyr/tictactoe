@@ -9,20 +9,18 @@ describe('Controller: MainCtrl', function () {
 		scope,
 		$httpBackend;
 
-	// Initialize the controller and a mock scope
-	beforeEach(inject(function (_$httpBackend_, $controller, $rootScope) {
+	beforeEach(inject(function (_$httpBackend_, $controller, $rootScope){
 		$httpBackend = _$httpBackend_;
-		$httpBackend.expectGET('/api/things')
-			.respond(['HTML5 Boilerplate', 'AngularJS', 'Karma', 'Express']);
-
 		scope = $rootScope.$new();
 		MainCtrl = $controller('MainCtrl', {
 			$scope: scope
 		});
 	}));
 
-	it('should attach a list of things to the scope', function () {
-		$httpBackend.flush();
-		expect(scope.awesomeThings.length).toBe(4);
+	it('should set login variable of logged in', function(){
+		scope.logIn();
+
+		expect(scope.loggedIn).toBeTruthy();
 	});
+
 });

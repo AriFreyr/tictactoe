@@ -1,18 +1,16 @@
-<div ng-controller="TicTacToeController" class="game-container">
+<div class="game-container">
 
-	<div>
-		<h2 class="username-heading" ng-show="gameStarted">{{username}}</h2>
+	<div class="message-board">
+		<p class="message"></p>
 	</div>
-	<form id="userform" name="userform" ng-hide="gameStarted">
-		<label for="username">Username</label>
-		<input id="username" ng-model="username" ng-required="true"/>
-		<button ng-click="createGame(username)" ng-disabled="userform.$invalid">Start Game!</button>
-	</form>
 
-	<div class="game-board" ng-show="gameStarted">
+	</div>
+
+	<div class="game-board">
 		<table class="game-grid">
 			<tr ng-repeat="row in board">
-				<td class="square" ng-repeat="col in row track by $index" ng-click="placeMove($parent.$index, $index, $event)">
+				<td class="square" ng-class="getClass($parent.$index, $index)"
+					ng-repeat="col in row track by $index" ng-click="placeMove($parent.$index, $index)">
 				</td>
 			</tr>
 		</table>

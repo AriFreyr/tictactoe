@@ -6,9 +6,10 @@
 'use strict';
 
 var MainPage = function() {
-  this.heroEl = element(by.css('.hero-unit'));
-  this.h1El = this.heroEl.element(by.css('h1'));
-  this.imgEl = this.heroEl.element(by.css('img'));
+
+	this.userForm = element(by.css('#userform'));
+	this.usernameInput = this.userForm.element(by.css('#username'));
+	this.logInButton = this.userForm.element(by.css('button'));
 };
 
 module.exports = new MainPage();

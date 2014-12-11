@@ -20,6 +20,9 @@ module.exports = function() {
 			else {
 				eventStore[event[0].id] = eventStore[event[0].id].concat(event);
 			}
+		},
+		getKeys: function getKeys() {
+			return Object.keys(eventStore);
 		}
 	};
 };

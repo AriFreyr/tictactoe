@@ -1,11 +1,13 @@
 'use strict';
 
 angular.module('tictactoeApp')
-	.controller('MainCtrl', function ($scope, $http) {
-		$scope.awesomeThings = [];
+	.controller('MainCtrl', function ($scope) {
 
-		$http.get('/api/things').success(function (awesomeThings) {
-			$scope.awesomeThings = awesomeThings;
-		});
+		$scope.username = '';
+		$scope.loggedIn = false;
+
+		$scope.logIn = function logIn(){
+			$scope.loggedIn = true;
+		};
 
 	});

@@ -87,4 +87,33 @@ describe('join game command', function() {
 
 		should(result).eql(then);
 	});
+
+	it('should send game does not exist if no create event', function() {
+		var given = [
+		];
+
+		var when = {
+			id: '1',
+			command: 'JoinGame',
+			user: {
+				id: '1',
+				username: 'Ari'
+			},
+			timestamp: '2014-12-02T14:04:04'
+		};
+
+		var then = [{
+			id: '1',
+			event: 'NoSuchGame',
+			user: {
+				id: '1',
+				username: 'Ari'
+			},
+			timestamp: '2014-12-02T14:04:04'
+		}];
+
+		var result = game(given).executeCommand(when);
+
+		should(result).eql(then);
+	});
 });

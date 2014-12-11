@@ -73,7 +73,7 @@ module.exports = function(history) {
 			doneMoves.push(command.move.square);
 
 			_.forEach(history, function (event) {
-				if (event.event === 'MovePlaced' && event.move.type === 'X') {
+				if (event.event === 'MovePlaced' && event.move.type === command.move.type) {
 					doneMoves.push(event.move.square);
 				}
 			});

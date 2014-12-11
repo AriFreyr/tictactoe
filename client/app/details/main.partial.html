@@ -1,0 +1,13 @@
+<div class="detail-container">
+
+	<div class="well game-details">
+		<button class="button-new-game" ng-click="createGame()">New Game!</button>
+		<div class="game-list">
+			<ul class="list-unstyled">
+				<li ng-repeat="game in games">
+					<a ng-href="/game/{{game}}" ng-click="joinGame(game)">{{game}}</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

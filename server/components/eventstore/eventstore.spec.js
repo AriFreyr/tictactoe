@@ -27,5 +27,12 @@ describe('eventstore should manage events correctly', function() {
 
 		should(memstore.loadEvents(1)).eql([]);
 	});
+
+	it('should return all keys for store', function(){
+		var memstore = store();
+		memstore.saveEvent([{id: 1}]);
+
+		should(memstore.getKeys().length).eql(1);
+	});
 });
 
