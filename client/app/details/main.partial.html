@@ -2,9 +2,9 @@
 
 	<div class="well game-details">
 		<button class="button-new-game" ng-click="createGame()">New Game!</button>
-		<div class="game-list">
-			<ul class="list-unstyled">
-				<li ng-repeat="game in games">
+		<div class="game-list-container">
+			<ul class="list-unstyled game-list">
+				<li ng-repeat="game in games | orderBy:'timestamp' ">
 					<a ng-href="/game/{{game}}" ng-click="joinGame(game)">{{game}}</a>
 				</li>
 			</ul>

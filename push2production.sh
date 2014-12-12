@@ -7,9 +7,9 @@ docker kill tictactoe
 
 docker rm tictactoe
 
-docker pull arifreyr/tictactoe
+docker pull arifreyr/tictactoe:production
 
-docker run -p 80:8080 -d -e 'NODE_ENV=production' --name='tictactoe' arifreyr/tictactoe
+docker run -p 80:8080 -d -e 'NODE_ENV=production' --name='tictactoe' arifreyr/tictactoe:production
 "
 
 echo "Done..."

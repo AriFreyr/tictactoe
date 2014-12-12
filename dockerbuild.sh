@@ -17,6 +17,7 @@ cd dist
 npm install --production
 
 echo "Building docker image"
-docker build -t arifreyr/tictactoe .
+docker build -t arifreyr/tictactoe:production .
+docker build -t arifreyr/tictactoe:e2e .
 
 echo "Done"

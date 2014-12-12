@@ -10,21 +10,52 @@ describe('Main View', function() {
 		game = require('./game.dsl')(page);
 	});
 
-	it('it should logon and be able to create a game', function() {
+
+	it('it should logon and be able to play a game', function() {
 		game.nameOfUser('TestUser');
 		game.logIn();
-		game.waitForDetails();
+		game.waitForDetails(true);
 		game.createNewGame();
+		game.waitForGame(true);
+
+		game.switchWindws();
+		game.nameOfUser('Tester2');
+		game.logIn();
+		game.waitForDetails();
+		game.joinGame();
+		game.waitForGame();
+
+		game.switchWindws();
+		game.expectCellsToBeShowing();
+		game.clickOnCell1();
+		game.waitForGame();
+
+		game.switchWindws();
+		game.clickOnCell2();
+		game.waitForGame();
+
+		game.switchWindws();
+		game.clickOnCell3();
+		game.waitForGame();
+
+		game.switchWindws();
+		game.clickOnCell4();
+		game.waitForGame();
+
+		game.switchWindws();
+		game.clickOnCell5();
+		game.waitForGame();
+
+
 	});
+
 
 	it('it should logon and be able to create a game', function() {
 		game.nameOfUser('TestUser');
 		game.logIn();
-		game.waitForDetails();
+		game.waitForDetails(true);
 		game.createNewGame();
-		game.waitForGame();
-		game.clickOnCell1();
-		game.clickOnCell2();
-		game.clickOnCell3();
+		game.waitForGame(true);
+		game.expectCellsToBeShowing();
 	});
 });
