@@ -73,6 +73,9 @@ module.exports = function(page) {
 		},
 		checkWinner: function checkWinner(winner) {
 			expect(game.winner.getText()).toBe('Game Over! ' + winner + ' has won!');
+		},
+		wait: function wait() {
+			browser.sleep(1000);
 		}
 
 	};

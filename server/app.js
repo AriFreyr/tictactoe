@@ -14,6 +14,11 @@ var app = express();
 var server = require('http').createServer(app);
 require('./config/express')(app);
 require('./routes')(app);
+var mongoose = require('mongoose');
+
+// Connect to database
+console.log("Connecting to mongoDb ", config.mongo.uri, config.mongo.options);
+mongoose.connect(config.mongo.uri, config.mongo.options);
 
 // Start server
 server.listen(config.port, config.ip, function () {
