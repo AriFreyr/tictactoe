@@ -9,7 +9,7 @@ docker rm tictactoe
 
 docker pull arifreyr/tictactoe:e2e
 
-docker run -p 80:8080 -d -e 'NODE_ENV=test' --name='tictactoe' arifreyr/tictactoe:e2e
+docker run -p 80:8080 -d -e 'NODE_ENV=production' --name='tictactoe' arifreyr/tictactoe:e2e
 "
 
 echo "Done..."
