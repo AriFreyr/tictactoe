@@ -14,10 +14,10 @@ describe('database store', function(){
 
 		Game.create(test, function(err, events) {
 			if (err) return handleError(res, err);
+			events._id.should.not.be.empty;
+			return done();
 		});
-		events._id.should.not.be.undefined;
 
-		return done();
 	});
 });
 
