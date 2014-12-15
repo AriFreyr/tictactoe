@@ -6,15 +6,13 @@ var game = require('../../models/tictactoe/models/tictactoe');
 var app = require('../../app');
 
 
-exports.create = function(req, res) {
+module.exports = function(eventstore) {
+	return {
+		create: function(req, res)
+			{
+				var result = context(eventstore, game).handleCommand(req.body);
 
-
-	if (app.eventStore === undefined) {
-		app.eventStore = require('../../components/eventstore/memorystore/eventstore')();
+				res.json(result);
+			}
 	}
-
-	var store = app.eventStore;
-	var result = context(store, game).handleCommand(req.body);
-
-	res.json(result);
 };

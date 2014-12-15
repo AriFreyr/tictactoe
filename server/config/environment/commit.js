@@ -4,7 +4,7 @@
 // ==================================
 module.exports = {
 
-	eventstore: 'eventstore/memorystore/eventstore',
+	eventstore: '/components/eventstore/memorystore/eventstore',
 
 	seedDB: false
 };

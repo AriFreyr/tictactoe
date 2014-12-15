@@ -1,10 +1,13 @@
 'use strict';
 
 var express = require('express');
-var controller = require('./events.controller.js');
 
 var router = express.Router();
 
-router.get('/:id', controller.show);
 
-module.exports = router;
+module.exports = function(eventsstore) {
+	var controller = require('./events.controller.js')(eventsstore);
+	router.get('/:id', controller.show);
+
+	return router;
+};

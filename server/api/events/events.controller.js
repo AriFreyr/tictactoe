@@ -1,15 +1,15 @@
 var app = require('../../app');
 
 
-exports.show = function(req, res) {
+module.exports = function (eventstore) {
 
 
-	if (app.eventStore === undefined) {
-		app.eventStore = require('../../components/eventstore/memorystore/eventstore')();
+	return {
+		show: function (req, res) {
+
+			var result = eventstore.loadEvents(req.param('id'));
+
+			res.json(result);
+		}
 	}
-
-	var store = app.eventStore;
-	var result = store.loadEvents(req.param('id'));
-
-	res.json(result);
 };

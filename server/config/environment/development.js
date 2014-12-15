@@ -8,7 +8,7 @@ module.exports = {
 		uri: 'mongodb://development:monalisa@ds061370.mongolab.com:61370/tictactoe'
 	},
 
-	eventstore: 'eventstore/memorystore/eventstore',
+	eventstore: '/components/eventstore/memorystore/eventstore',
 
 	seedDB: true
 };

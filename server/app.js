@@ -13,7 +13,7 @@ var config = require('./config/environment');
 var app = express();
 var server = require('http').createServer(app);
 require('./config/express')(app);
-require('./routes')(app);
+require('./routes')(app, config);
 var mongoose = require('mongoose');
 
 // Connect to database
@@ -24,8 +24,6 @@ mongoose.connect(config.mongo.uri, config.mongo.options);
 server.listen(config.port, config.ip, function () {
   console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
 });
-
-app.eventStore = undefined;
 
 // Expose app
 var exports = module.exports = app;
