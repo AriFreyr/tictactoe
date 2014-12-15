@@ -3,10 +3,12 @@
 // Development specific configuration
 // ==================================
 module.exports = {
-  // MongoDB connection options
-  mongo: {
-    uri: 'mongodb://localhost/tictactoe-dev'
-  },
+	// MongoDB connection options
+	mongo: {
+		uri: 'mongodb://localhost/tictactoe-dev'
+	},
 
-  seedDB: true
+	eventstore: 'eventstore/memorystore/eventstore',
+
+	seedDB: true
 };
