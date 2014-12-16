@@ -1,4 +1,5 @@
-var _ = require('lodash');
+var _ = require('lodash'),
+	q = require('q');
 
 module.exports = function() {
 
@@ -6,23 +7,24 @@ module.exports = function() {
 
 	return {
 		loadEvents: function loadEvents(eid) {
-			if (eventStore[eid] === undefined) {
-				return [];
-			}
-			else {
-				return eventStore[eid];
-			}
+			var deferred = q.defer();
+
+			deferred.resolve(eventStore[eid] || [])
+
+			return deferred.promise;
 		},
 		saveEvent: function saveEvent(event) {
-			if (eventStore[event[0].id] === undefined) {
-				eventStore[event[0].id] = [].concat(event);
-			}
-			else {
-				eventStore[event[0].id] = eventStore[event[0].id].concat(event);
-			}
+			var deferred = q.defer();
+			eventStore[event[0].id] = (eventStore[event[0].id] || []).concat(event);
+			deferred.resolve(eventStore[event[0].id]);
+			return deferred.promise;
 		},
 		getKeys: function getKeys() {
-			return Object.keys(eventStore);
+			var deferred = q.defer();
+
+			deferred.resolve(Object.keys(eventStore));
+
+			return deferred.promise;
 		}
 	};
 };

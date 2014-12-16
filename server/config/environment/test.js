@@ -5,7 +5,7 @@
 module.exports = {
 	// MongoDB connection options
 	mongo: {
-		uri: 'mongodb://localhost/tictactoe-test'
+		uri: 'mongodb://test:monalisa@ds061370.mongolab.com:61370/tictactoe'
 	},
 	eventstore: '/components/eventstore/memorystore/eventstore'
 };

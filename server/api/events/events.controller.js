@@ -7,9 +7,12 @@ module.exports = function (eventstore) {
 	return {
 		show: function (req, res) {
 
-			var result = eventstore.loadEvents(req.param('id'));
+			eventstore.loadEvents(req.param('id')).then(function(events){
+				res.json(events);
+			}, function(err) {
+				res.json(err);
+			});
 
-			res.json(result);
 		}
 	}
 };

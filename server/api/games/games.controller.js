@@ -6,9 +6,11 @@ module.exports = function(eventstore) {
 		index: function (req, res) {
 
 
-			var result = eventstore.getKeys();
-
-			res.json(result);
+			eventstore.getKeys().then(function(ids){
+				res.json(ids);
+			}, function(err){
+				res.json(err);
+			});
 		}
 	}
 };

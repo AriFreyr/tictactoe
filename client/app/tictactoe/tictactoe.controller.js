@@ -54,9 +54,10 @@ angular.module('tictactoeApp').controller('TicTacToeController',
 			});
 
 			promise.then(function(data) {
-				var event = data.data[0];
+				/* var event = data.data[0];
 				$scope.events.push(event);
-				proccessEvent(event);
+				proccessEvent(event); */
+				console.log(data);
 			});
 		};
 
@@ -66,7 +67,7 @@ angular.module('tictactoeApp').controller('TicTacToeController',
 
 		var checkForChanges = function checkForChanges() {
 			var newestEvent = $scope.events[$scope.events.length - 1];
-			$http.get('/api/getevents/'+newestEvent.id).success(function(data){
+			$http.get('/api/getevents/' + $stateParams.id).success(function(data){
 				angular.forEach(data, function(event){
 					if (Date.parse(newestEvent.timestamp) < Date.parse(event.timestamp)) {
 						proccessEvent(event);
@@ -76,8 +77,8 @@ angular.module('tictactoeApp').controller('TicTacToeController',
 			});
 		};
 
-
 		var proccessEvent = function processEvent(event) {
+			console.log(event);
 			if (event.event === 'MovePlaced') {
 
 				placeMarker(event);

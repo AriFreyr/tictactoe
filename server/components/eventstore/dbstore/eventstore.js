@@ -1,4 +1,5 @@
 var _ = require('lodash'),
+	q = require('q'),
 	Game = require('./gameschema');
 
 module.exports = function() {
@@ -6,28 +7,40 @@ module.exports = function() {
 
 	return {
 		loadEvents: function loadEvents(eid) {
-			Game.findOne({id:eid}, function(err, game){
-				if (err) throw 'NotFound';
-				return game.events;
+			var deferred = q.defer();
+
+			Game.findOne({'id' :eid.toString()}, function(err, game){
+				if (err) deferred.reject(err);
+				deferred.resolve(game && game.events || []);
 			});
+
+			return deferred.promise;
 		},
 		saveEvent: function saveEvent(event) {
-			var query = {'id': event.id};
+			var deferred = q.defer();
+
+			var query = {'id': event[0].id};
 			var options = {'new': true, 'upsert': true};
-			var update = {$push: {'events': event}};
+			var update = {'id': event[0].id, $pushAll: {'events': event}};
 
 			Game.findOneAndUpdate(query, update, options, function(err, game) {
-				if (err) throw 'Error updating';
-				return game;
+				if (err) deferred.reject(err);
+				deferred.resolve(game.events);
 			});
+
+			return deferred.promise;
 		},
 		getKeys: function getKeys() {
+			var deferred = q.defer();
+
 			var query = Game.find({}).select('id');
 
 			query.exec(function (err, ids) {
-				if (err) throw 'Error getting ids';
-				return ids;
+				if (err) deferred.reject(err);
+				deferred.resolve(ids);
 			});
+
+			return deferred.promise;
 		}
 	};
 };

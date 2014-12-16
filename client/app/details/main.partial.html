@@ -5,7 +5,7 @@
 		<div class="game-list-container">
 			<ul class="list-unstyled game-list">
 				<li ng-repeat="game in games | orderBy:'timestamp' ">
-					<a ng-href="/game/{{game}}" ng-click="joinGame(game)">{{game}}</a>
+					<a ng-href="/game/{{game.id}}" ng-click="joinGame(game.id)">{{game.id}}</a>
 				</li>
 			</ul>
 		</div>
