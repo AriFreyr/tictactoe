@@ -11,6 +11,7 @@ describe('Main View', function() {
 	});
 
 	it('it should logon and be able to create a game', function() {
+		game.waitForDetails();
 		game.nameOfUser('TestUser');
 		game.logIn();
 		game.waitForDetails(true);
@@ -21,6 +22,7 @@ describe('Main View', function() {
 
 
 	it('it should logon and be able to play a game', function() {
+		game.waitForDetails();
 		game.nameOfUser('TestUser');
 		game.logIn();
 		game.waitForDetails(true);
