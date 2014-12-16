@@ -5,6 +5,7 @@ describe('Main View', function() {
 	var game;
 
 	beforeEach(function() {
+		browser.sleep(1000);
 		browser.get('/');
 		page = require('./main.po');
 		game = require('./game.dsl')(page);
@@ -12,7 +13,6 @@ describe('Main View', function() {
 
 
 	it('it should logon and be able to play a game', function() {
-		game.wait();
 		game.nameOfUser('TestUser');
 		game.logIn();
 		game.waitForDetails(true);

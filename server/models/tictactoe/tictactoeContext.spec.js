@@ -45,6 +45,6 @@ describe('context should give the correct game to work with', function() {
 			should(calledWithId).be.exactly('1337');
 			should(eventId).be.exactly('1337');
 		});
-		
+
 	});
 });

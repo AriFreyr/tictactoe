@@ -4,7 +4,7 @@
 		<button class="button-new-game" ng-click="createGame()">New Game!</button>
 		<div class="game-list-container">
 			<ul class="list-unstyled game-list">
-				<li ng-repeat="game in games | orderBy:'timestamp' ">
+				<li ng-repeat="game in games | orderBy:'timestamp':true ">
 					<a ng-href="/game/{{game.id}}" ng-click="joinGame(game.id)">{{game.id}}</a>
 				</li>
 			</ul>
