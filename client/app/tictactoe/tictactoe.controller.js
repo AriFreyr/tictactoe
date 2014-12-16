@@ -23,7 +23,6 @@ angular.module('tictactoeApp').controller('TicTacToeController',
 				success(function(data) {
 					$scope.events = data;
 					angular.forEach(data, function(event, index) {
-						console.log('index',index);
 						processEvent(event, ((data.length-1) === index));
 					});
 

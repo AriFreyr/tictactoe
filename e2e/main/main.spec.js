@@ -26,6 +26,8 @@ describe('Main View', function() {
 		game.waitForDetails(true);
 		game.createNewGame();
 		game.waitForGame(true);
+		game.expectCellsToBeShowing();
+		expect(game.checkMessage()).toBe('Your turn!');
 
 		browser.getCurrentUrl().then(function(url) {
 
@@ -34,22 +36,18 @@ describe('Main View', function() {
 				browser.executeScript('window.open("' + url + '", "second-window")');
 				browser.switchTo().window('second-window');
 
+				game.waitForGame();
 				game.nameOfUser('TestUser2');
 				game.logIn();
 				game.waitForGame();
 
 				game.expectCellsToBeShowing();
-
-				browser.switchTo().window(originalHandle);
+				expect(game.checkMessage()).toBe('Opponents turn!');
 				game.waitForGame();
-				game.expectCellsToBeShowing();
-				expect(game.checkMessage()).toBe('Your turn!');
 
 				browser.executeScript('window.close()');
 			});
 		});
-
-
 
 
 	});

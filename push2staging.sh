@@ -13,3 +13,4 @@ docker run -p 80:8080 -d -e 'NODE_ENV=production' --name='tictactoe' arifreyr/ti
 "
 
 echo "Done..."
+sleep 10
