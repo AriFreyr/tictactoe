@@ -22,8 +22,9 @@ angular.module('tictactoeApp').controller('TicTacToeController',
 			$http.get('/api/getevents/' + id).
 				success(function(data) {
 					$scope.events = data;
-					angular.forEach(data, function(event) {
-						proccessEvent(event);
+					angular.forEach(data, function(event, index) {
+						console.log('index',index);
+						processEvent(event, ((data.length-1) === index));
 					});
 
 					intervalFun = $interval(checkForChanges, 500);
@@ -54,9 +55,6 @@ angular.module('tictactoeApp').controller('TicTacToeController',
 			});
 
 			promise.then(function(data) {
-				/* var event = data.data[0];
-				$scope.events.push(event);
-				proccessEvent(event); */
 				console.log(data);
 			});
 		};
@@ -68,16 +66,16 @@ angular.module('tictactoeApp').controller('TicTacToeController',
 		var checkForChanges = function checkForChanges() {
 			var newestEvent = $scope.events[$scope.events.length - 1];
 			$http.get('/api/getevents/' + $stateParams.id).success(function(data){
-				angular.forEach(data, function(event){
+				angular.forEach(data, function(event, index){
 					if (Date.parse(newestEvent.timestamp) < Date.parse(event.timestamp)) {
-						proccessEvent(event);
+						processEvent(event, ((data.length-1) === index) );
 						$scope.events.push(event);
 					}
 				});
 			});
 		};
 
-		var proccessEvent = function processEvent(event) {
+		var processEvent = function processEvent(event, last) {
 			console.log(event);
 			if (event.event === 'MovePlaced') {
 
@@ -106,6 +104,17 @@ angular.module('tictactoeApp').controller('TicTacToeController',
 					$scope.player = 'X';
 					postMessage('Your turn!');
 					$scope.myTurn = true;
+				}
+				else if (last) {
+					$http.post('/api/sendcommand', {
+						id: parseInt($stateParams.id),
+						command: 'JoinGame',
+						user: {
+							id: parseInt(Math.random() * 1000),
+							username: $scope.username
+						},
+						timestamp: new Date().toISOString()
+					});
 				}
 			}
 			else if (event.event === 'GameJoined') {
