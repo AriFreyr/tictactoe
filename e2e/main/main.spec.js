@@ -42,7 +42,6 @@ describe('Main View', function() {
 				game.nameOfUser('TestUser2');
 				game.logIn();
 				game.waitForGame();
-
 				game.expectCellsToBeShowing();
 				expect(game.checkMessage()).toBe('Opponents turn!');
 				game.waitForGame();

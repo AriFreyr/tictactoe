@@ -75,7 +75,6 @@ angular.module('tictactoeApp').controller('TicTacToeController',
 		};
 
 		var processEvent = function processEvent(event, last) {
-			console.log(event);
 			if (event.event === 'MovePlaced') {
 
 				placeMarker(event);
