@@ -67,4 +67,20 @@ describe('Controller: TicTacToeController', function () {
 
 	});
 
+	it('should not place move if not your turn', function(){
+		scope.myTurn = false;
+		scope.placeMove(1, 1);
+
+		$httpBackend.verifyNoOutstandingExpectation();
+
+	});
+
+	it('should not place move if game over', function(){
+		scope.gameOver = true;
+		scope.placeMove(1, 1);
+
+		$httpBackend.verifyNoOutstandingExpectation();
+
+	});
+
 });

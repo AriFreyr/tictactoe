@@ -39,7 +39,7 @@ angular.module('tictactoeApp').controller('TicTacToeController',
 
 			var square = getSquare(row, col);
 
-			var promise = $http.post('/api/sendcommand', {
+			$http.post('/api/sendcommand', {
 				id: $scope.events[0].id,
 				command: 'PlaceMove',
 				move: {
@@ -53,9 +53,6 @@ angular.module('tictactoeApp').controller('TicTacToeController',
 				timestamp: new Date().toISOString()
 			});
 
-			promise.then(function(data) {
-				console.log(data);
-			});
 		};
 
 		$scope.getClass = function getClass(row, col) {
